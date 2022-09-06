@@ -1,9 +1,9 @@
-package com.Proyecto_Ciclo_3.Proyecto.services;
+package com.Proyecto_Ciclo_3.Project.services;
 
 
 
-import com.Proyecto_Ciclo_3.Proyecto.entities.MovimientoDinero;
-import com.Proyecto_Ciclo_3.Proyecto.repositories.MovementRepository;
+import com.Proyecto_Ciclo_3.Project.entities.MovimientoDinero;
+import com.Proyecto_Ciclo_3.Project.repositories.MovementRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

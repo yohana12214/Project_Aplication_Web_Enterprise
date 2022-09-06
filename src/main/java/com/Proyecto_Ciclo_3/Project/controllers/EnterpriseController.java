@@ -1,9 +1,9 @@
-package com.Proyecto_Ciclo_3.Proyecto.controllers;
+package com.Proyecto_Ciclo_3.Project.controllers;
 
 
 
-import com.Proyecto_Ciclo_3.Proyecto.entities.Empresa;
-import com.Proyecto_Ciclo_3.Proyecto.services.EnterpriseService;
+import com.Proyecto_Ciclo_3.Project.entities.Empresa;
+import com.Proyecto_Ciclo_3.Project.services.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.Proyecto_Ciclo_3.Proyecto.entities;
+package com.Proyecto_Ciclo_3.Project.entities;
 
 
 import javax.persistence.*;

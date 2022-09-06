@@ -1,8 +1,8 @@
-package com.Proyecto_Ciclo_3.Proyecto.controllers;
+package com.Proyecto_Ciclo_3.Project.controllers;
 
 
-import com.Proyecto_Ciclo_3.Proyecto.entities.Empleado;
-import com.Proyecto_Ciclo_3.Proyecto.services.UsersService;
+import com.Proyecto_Ciclo_3.Project.entities.Empleado;
+import com.Proyecto_Ciclo_3.Project.services.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class UsersController {
     }
     @PostMapping("/users")
     public Optional<Boolean> SaveUser(@RequestBody Empleado empl){
-        return Optional.ofNullable(this.usersService.saveOrUpdate(empl));
+        return Optional.of(this.usersService.saveOrUpdate(empl));
     }
     @GetMapping(path = "/users/{id}")
     public Empleado findUserById(@PathVariable("id") Integer id){
