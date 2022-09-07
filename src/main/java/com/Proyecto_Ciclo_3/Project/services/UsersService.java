@@ -9,39 +9,34 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UsersService {
     @Autowired
-    UsersRepository empleadoRepositorio;
+    UsersRepository usersRepository;
 
-    public List<Empleado> getAllEmpleados(){
-        List<Empleado> empleadoList = new ArrayList<>();
-        empleadoRepositorio.findAll().forEach(empleado -> empleadoList.add(empleado));
-        return empleadoList;
-
-    }
-
-    public Empleado getEmpleadoById(Integer id){
-        return empleadoRepositorio.findById(id).get();
+    public List<Empleado> getAllUsers(){
+        List<Empleado> usersList = new ArrayList<>();
+        usersRepository.findAll().forEach(empleado -> usersList.add(empleado));
+        return usersList;
 
     }
-    public ArrayList<Empleado> getEmpleadoByEmpresa(Integer id){
-        return empleadoRepositorio.findByEmpresa(id);
+    public Optional<Empleado> getUserById (Integer id){
+        return usersRepository.findById(id);
     }
-    public boolean saveOrUpdate(Empleado empleado) {
-        Empleado empleado1 = empleadoRepositorio.save(empleado);
-        if (empleadoRepositorio.findById(empleado1.getId()) !=null){
-            return true;
-        }
-        return false;
+    public ArrayList<Empleado> getUsersByEnterprise(Integer id){
+
+        return usersRepository.findByEnterprise(id);
+    }
+    public Empleado saveOrUpdate(Empleado empleado) {
+
+        return usersRepository.save(empleado);
     }
 
-    public boolean deleteEmpleado(Integer id){
-        empleadoRepositorio.deleteById(id);
-        if(getEmpleadoById(id)!= null){
-            return false;
-                    }
-        return true;
+    public boolean DeleteUser(Integer id){
+        usersRepository.deleteById(id);
+        return getUserById(id).isEmpty();
     }
 
 

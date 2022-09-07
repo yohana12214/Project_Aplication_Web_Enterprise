@@ -12,35 +12,35 @@ import java.util.List;
 @RestController
 public class EnterpriseController {
     @Autowired
-    EnterpriseService empresaService;
+    EnterpriseService enterpriseService;
 
     @GetMapping("/enterprises")
     public List<Empresa> verEmpresas() {
-        return empresaService.getallEmpresas();
+        return enterpriseService.GetAllEnterprises();
     }
 
     @PostMapping("/enterprises")
     public boolean guardarEmpresa(@RequestBody Empresa empresa) {
-        return this.empresaService.setorChangeEmpresaName(empresa);
+        return this.enterpriseService.SelectOrChangeEnterpriseName(empresa);
     }
 
     @GetMapping(path = "enterprises/{id}")
-    public Empresa empresaPorID(@PathVariable("id") Integer id){
-        return this.empresaService.getEmpresaById(id);
+    public Empresa EnterpriseById(@PathVariable("id") Integer id){
+        return this.enterpriseService.GetEnterpriseById(id);
     }
     @PatchMapping("/enterprises/{id}")
-    public boolean actualizarEmpresa(@PathVariable("id") Integer id, @RequestBody Empresa empresa) {
-        Empresa emp = empresaService.getEmpresaById(id);
+    public boolean UpdateEnterprise(@PathVariable("id") Integer id, @RequestBody Empresa empresa) {
+        Empresa emp = enterpriseService.GetEnterpriseById(id);
         emp.setNombre(empresa.getNombre());
         emp.setDireccion(empresa.getDireccion());
         emp.setTelefono(empresa.getTelefono());
         emp.setNIT(empresa.getNIT());
-        return empresaService.setorChangeEmpresaName(emp);
+        return enterpriseService.SelectOrChangeEnterpriseName(emp);
     }
     @DeleteMapping(path = "enterprises/{id}")
-    public String DeleteEmpresa (@PathVariable("id") Integer id){
-        boolean respuesta = this.empresaService.EliminateEmpresa(id);
-        if (respuesta) {
+    public String DeleteEnterprise (@PathVariable("id") Integer id){
+        boolean response = this.enterpriseService.EliminateEmpresa(id);
+        if (response) {
             return "Ha sido eliminada la empresa con el id" + id;
         } else {
             return "No ha sido posible eliminar la empresa con el id" + id;

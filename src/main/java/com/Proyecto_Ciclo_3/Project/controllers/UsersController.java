@@ -20,32 +20,34 @@ public class UsersController {
     /////
     @GetMapping("/users")
     public List<Empleado> viewUsers(){
-        return usersService.getAllEmpleados();
+
+        return usersService.getAllUsers();
     }
     @PostMapping("/users")
-    public Optional<Boolean> SaveUser(@RequestBody Empleado empl){
-        return Optional.of(this.usersService.saveOrUpdate(empl));
+    public Optional<Empleado> SaveUser(@RequestBody Empleado empleado){
+
+        return Optional.ofNullable(this.usersService.saveOrUpdate(empleado));
     }
     @GetMapping(path = "/users/{id}")
-    public Empleado findUserById(@PathVariable("id") Integer id){
-        return this.usersService.getEmpleadoById(id);
+    public Optional<Empleado> findUserById(@PathVariable("id") Integer id){
+        return this.usersService.getUserById(id);
     }
     @GetMapping("/enterprises/{id}/users")
     public ArrayList<Empleado> FinduserByEnterprise(@PathVariable("id") Integer id){
-        return this.usersService.getEmpleadoByEmpresa(id);
+        return this.usersService.getUsersByEnterprise(id);
     }
     @PatchMapping("/users/{id}")
-    public boolean UpdateUsers(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
-        Empleado empl = usersService.getEmpleadoById(id);
-        empl.setNombre(empleado.getNombre());
-        empl.setCorreo(empleado.getCorreo());
-        empl.setEmpresa(empleado.getEmpresa());
-        empl.setRol(empleado.getRol());
-        return usersService.saveOrUpdate(empl);
+    public Empleado UpdateUsers(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
+        Empleado user = usersService.getUserById(id).get();
+        user.setNombre(empleado.getNombre());
+        user.setCorreo(empleado.getCorreo());
+        user.setEmpresa(empleado.getEmpresa());
+        user.setRol(empleado.getRol());
+        return usersService.saveOrUpdate(user);
     }
     @DeleteMapping("/users/{id}") //Metodo para eliminar empleados por id
     public String DeleteUser(@PathVariable("id") Integer id) {
-        boolean Response = usersService.deleteEmpleado(id); //eliminamos usando el servicio de nuestro service
+        boolean Response = usersService.DeleteUser(id); //eliminamos usando el servicio de nuestro service
         if (Response) {
             return "Se elimino correctamente el empleado con id " + id;
         }

@@ -13,28 +13,28 @@ import java.util.List;
 @Service
 public class EnterpriseService {
     @Autowired
-    EnterpriseRepository empresaRepositorio;
+    EnterpriseRepository enterpriseRepository;
 
-    public List<Empresa> getallEmpresas(){
-        List<Empresa> listadeEmpresas = new ArrayList<>();
-        empresaRepositorio.findAll().forEach(empresa -> listadeEmpresas.add(empresa));
-        return listadeEmpresas;
+    public List<Empresa> GetAllEnterprises(){
+        List<Empresa> EnterpriseList = new ArrayList<>();
+        enterpriseRepository.findAll().forEach(enterprise -> EnterpriseList.add(enterprise));
+        return EnterpriseList;
 
     }
-    public Empresa getEmpresaById(Integer id){
-        return empresaRepositorio.findById(id).get();
+    public Empresa GetEnterpriseById(Integer id){
+        return enterpriseRepository.findById(id).get();
     }
     //metodo para definir o actulizar el nombre de la empresa
-    public boolean setorChangeEmpresaName(Empresa empresa){
-        Empresa emp = empresaRepositorio.save(empresa);
-        if(empresaRepositorio.findById(emp.getId()) != null){
+    public boolean SelectOrChangeEnterpriseName(Empresa empresa){
+        Empresa emp = enterpriseRepository.save(empresa);
+        if(enterpriseRepository.findById(emp.getId()) != null){
             return true;
         }
         return false;
     }
     public boolean EliminateEmpresa(Integer id){
-        empresaRepositorio.deleteById(id);
-        if (getEmpresaById(id) != null){
+        enterpriseRepository.deleteById(id);
+        if (GetEnterpriseById(id) != null){
             return false;
         }
         return true;
