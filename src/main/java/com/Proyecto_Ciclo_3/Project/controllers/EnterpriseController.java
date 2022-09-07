@@ -14,12 +14,12 @@ public class EnterpriseController {
     @Autowired
     EnterpriseService empresaService;
 
-    @GetMapping("/enterprise")
+    @GetMapping("/enterprises")
     public List<Empresa> verEmpresas() {
         return empresaService.getallEmpresas();
     }
 
-    @PostMapping("/enterprise")
+    @PostMapping("/enterprises")
     public boolean guardarEmpresa(@RequestBody Empresa empresa) {
         return this.empresaService.setorChangeEmpresaName(empresa);
     }
