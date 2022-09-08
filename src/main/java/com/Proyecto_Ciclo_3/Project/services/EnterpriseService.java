@@ -32,7 +32,7 @@ public class EnterpriseService {
         }
         return false;
     }
-    public boolean EliminateEmpresa(Integer id){
+    public boolean DeleteEnterprise(Integer id){
         enterpriseRepository.deleteById(id);
         if (GetEnterpriseById(id) != null){
             return false;

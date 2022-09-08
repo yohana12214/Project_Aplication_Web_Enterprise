@@ -20,11 +20,11 @@ public class EnterpriseController {
     }
 
     @PostMapping("/enterprises")
-    public boolean guardarEmpresa(@RequestBody Empresa empresa) {
+    public boolean SaveEnterprise(@RequestBody Empresa empresa) {
         return this.enterpriseService.SelectOrChangeEnterpriseName(empresa);
     }
 
-    @GetMapping(path = "enterprises/{id}")
+    @GetMapping(path = "/enterprises/{id}")
     public Empresa EnterpriseById(@PathVariable("id") Integer id){
         return this.enterpriseService.GetEnterpriseById(id);
     }
@@ -38,8 +38,8 @@ public class EnterpriseController {
         return enterpriseService.SelectOrChangeEnterpriseName(emp);
     }
     @DeleteMapping(path = "enterprises/{id}")
-    public String DeleteEnterprise (@PathVariable("id") Integer id){
-        boolean response = this.enterpriseService.EliminateEmpresa(id);
+    public String DeleteEnterprises (@PathVariable("id") Integer id){
+        boolean response = this.enterpriseService.DeleteEnterprise(id);
         if (response) {
             return "Ha sido eliminada la empresa con el id" + id;
         } else {
