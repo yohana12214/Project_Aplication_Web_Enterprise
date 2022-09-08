@@ -24,9 +24,9 @@ public class UsersController {
         return usersService.getAllUsers();
     }
     @PostMapping("/users")
-    public Optional<Empleado> SaveUser(@RequestBody Empleado empleado){
+    public Optional<Optional<Empleado>> SaveUser(@RequestBody Empleado user){
 
-        return Optional.ofNullable(this.usersService.saveOrUpdate(empleado));
+        return Optional.ofNullable(this.usersService.saveOrUpdate(user));
     }
     @GetMapping(path = "/users/{id}")
     public Optional<Empleado> findUserById(@PathVariable("id") Integer id){
@@ -37,13 +37,18 @@ public class UsersController {
         return this.usersService.getUsersByEnterprise(id);
     }
     @PatchMapping("/users/{id}")
-    public Empleado UpdateUsers(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
-        Empleado user = usersService.getUserById(id).get();
-        user.setNombre(empleado.getNombre());
-        user.setCorreo(empleado.getCorreo());
-        user.setEmpresa(empleado.getEmpresa());
-        user.setRol(empleado.getRol());
-        return usersService.saveOrUpdate(user);
+    public Optional<Empleado> UpdateUsers(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
+        Optional<Empleado> user = usersService.getUserById(id);
+        if(user.isPresent()){
+            Empleado users = user.get();
+            users.setNombre(empleado.getNombre());
+            users.setCorreo(empleado.getCorreo());
+            users.setEmpresa(empleado.getEmpresa());
+            users.setRol(empleado.getRol());
+            return usersService.saveOrUpdate(users);
+        }
+
+        return user;
     }
     @DeleteMapping("/users/{id}") //Metodo para eliminar empleados por id
     public String DeleteUser(@PathVariable("id") Integer id) {

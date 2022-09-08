@@ -29,9 +29,9 @@ public class UsersService {
 
         return usersRepository.findByEnterprise(id);
     }
-    public Empleado saveOrUpdate(Empleado empleado) {
+    public Optional<Empleado> saveOrUpdate(Empleado user) {
 
-        return usersRepository.save(empleado);
+        return Optional.ofNullable(this.usersRepository.save(user));
     }
 
     public boolean DeleteUser(Integer id){
