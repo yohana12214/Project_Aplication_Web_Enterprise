@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EnterpriseService {
@@ -21,23 +22,20 @@ public class EnterpriseService {
         return EnterpriseList;
 
     }
-    public Empresa GetEnterpriseById(Integer id){
-        return enterpriseRepository.findById(id).get();
+    public Optional<Empresa> GetEnterpriseById(Integer id){
+        return enterpriseRepository.findById(id);
     }
     //metodo para definir o actulizar el nombre de la empresa
     public boolean SelectOrChangeEnterpriseName(Empresa empresa){
         Empresa emp = enterpriseRepository.save(empresa);
-        if(enterpriseRepository.findById(emp.getId()) != null){
+        return enterpriseRepository.findById(emp.getId()).isPresent();
+    }
+    public boolean DeleteEnterprise(Integer id){
+        if(GetEnterpriseById(id).isPresent()){
+            enterpriseRepository.deleteById(id);
             return true;
         }
         return false;
-    }
-    public boolean DeleteEnterprise(Integer id){
-        enterpriseRepository.deleteById(id);
-        if (GetEnterpriseById(id) != null){
-            return false;
-        }
-        return true;
     }
 
 

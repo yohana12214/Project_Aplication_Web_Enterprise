@@ -13,7 +13,7 @@ public class Empresa {
     private String nombre;
     private String direccion;
     private String telefono;
-    private String NIT;
+    private String nit;
 
     public Empresa() {
 
@@ -23,7 +23,7 @@ public class Empresa {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.NIT = NIT;
+        this.nit = NIT;
     }
 
     public int getId() {
@@ -58,12 +58,12 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-    public String getNIT() {
-        return NIT;
+    public String getNit() {
+        return nit;
     }
 
-    public void setNIT(String NIT) {
-        this.NIT = NIT;
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 
 }
