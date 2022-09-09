@@ -68,11 +68,10 @@ public class Empleado {
     }
 
     public void setRol(String rol) {
-        if(rol== "administrativo"||rol=="operativo"){
-            this.rol = rol;
-        }else{
+        if(rol != "administrativo" || rol != "operativo"){
             System.out.println("El rol no existe");
         }
+        this.rol = rol;
     }
 
 
@@ -82,8 +81,9 @@ public class Empleado {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", correo='" + correo + '\'' +
-                ", rol='" + rol + '\'' +
                 ", empresa=" + empresa +
+                ", rol='" + rol + '\'' +
                 '}';
+
     }
 }

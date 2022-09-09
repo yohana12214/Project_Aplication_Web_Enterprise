@@ -33,12 +33,12 @@ public class EnterpriseController {
     public boolean UpdateEnterprise(@PathVariable("id") Integer id, @RequestBody Empresa enterprise) {
         Optional<Empresa> enterpr = enterpriseService.GetEnterpriseById(id);
         if(enterpr.isPresent()) {
-            Empresa enterpri = enterpr.get();
-            enterpri.setNombre(enterprise.getNombre());
-            enterpri.setDireccion(enterprise.getDireccion());
-            enterpri.setTelefono(enterprise.getTelefono());
-            enterpri.setNit(enterprise.getNit());
-            return enterpriseService.SelectOrChangeEnterpriseName(enterpri);
+            Empresa enter = enterpr.get();
+            enter.setNombre(enterprise.getNombre());
+            enter.setDireccion(enterprise.getDireccion());
+            enter.setTelefono(enterprise.getTelefono());
+            enter.setNit(enterprise.getNit());
+            return enterpriseService.SelectOrChangeEnterpriseName(enter);
         }
         return false;
     }
