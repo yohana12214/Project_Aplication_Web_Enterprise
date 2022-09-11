@@ -18,16 +18,21 @@ public class UsersController {
     /////
     //RestController para la entidad Empleado;
     /////
+
+    /*-------------------------- GET --------------------------------------------*/
     @GetMapping("/users")
     public List<Empleado> viewUsers(){
 
         return usersService.getAllUsers();
     }
+
+    /*-------------------------- POST --------------------------------------------*/
     @PostMapping("/users")
     public Optional<Optional<Empleado>> SaveUser(@RequestBody Empleado user){
 
         return Optional.ofNullable(this.usersService.saveOrUpdate(user));
     }
+    /*-------------------------- GET con parámetro id--------------------------------------------*/
     @GetMapping(path = "/users/{id}")
     public Optional<Empleado> findUserById(@PathVariable("id") Integer id){
         return this.usersService.getUserById(id);
@@ -36,6 +41,8 @@ public class UsersController {
     public ArrayList<Empleado> FinduserByEnterprise(@PathVariable("id") Integer id){
         return this.usersService.getUsersByEnterprise(id);
     }
+
+    /*-------------------------- --------------------------------------------*/
     @PatchMapping("/users/{id}")
     public Optional<Empleado> UpdateUsers(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
         Optional<Empleado> user = usersService.getUserById(id);

@@ -15,20 +15,26 @@ public class EnterpriseController {
     @Autowired
     EnterpriseService enterpriseService;
 
-    @GetMapping("/enterprises")
+    /*-------------------------- GET --------------------------------------------*/
+    @GetMapping("/enterprises")//listar todas las empresas creadas
     public List<Empresa> verEmpresas() {
         return enterpriseService.GetAllEnterprises();
     }
 
-    @PostMapping("/enterprises")
+    /*---------------------------------- POST --------------------------------------------*/
+    @PostMapping("/enterprises")//crear empresa
+    //pide un body tipo Json y entrega un booleano: true(exitoso), falta excepcion por si ya existe la empresa
     public boolean SaveEnterprise(@RequestBody Empresa empresa) {
         return this.enterpriseService.SelectOrChangeEnterpriseName(empresa);
     }
 
+    /*-------------------------- GET CON parámetro (id) --------------------------------------------*/
     @GetMapping(path = "/enterprises/{id}")
     public Optional<Empresa> EnterpriseById(@PathVariable("id") Integer id){
         return this.enterpriseService.GetEnterpriseById(id);
     }
+
+    /*-------------------------- PATCH con Cualquier parámetro --------------------------------------------*/
     @PatchMapping("/enterprises/{id}")
     public boolean UpdateEnterprise(@PathVariable("id") Integer id, @RequestBody Empresa enterprise) {
         Optional<Empresa> enterpr = enterpriseService.GetEnterpriseById(id);
@@ -42,6 +48,8 @@ public class EnterpriseController {
         }
         return false;
     }
+
+    /*-------------------------- DELETE --------------------------------------------*/
     @DeleteMapping(path = "enterprises/{id}")
     public String DeleteEnterprises (@PathVariable("id") Integer id){
         boolean response = this.enterpriseService.DeleteEnterprise(id);

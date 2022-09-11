@@ -15,16 +15,19 @@ public class MovementController {
     @Autowired
     MovementService movementService;
 
+    /*-------------------------- GET --------------------------------------------*/
     @GetMapping("/enterprises/{id}/movement")
     public List<MovimientoDinero> movimientoDineroPorID(){
         return this.movementService.getAllMovimientos();
     }
 
+    /*-------------------------- POST --------------------------------------------*/
     @PostMapping("/enterprises/{id}/movement")
     public Optional <MovimientoDinero> guardarMovimientoDinero (@RequestBody MovimientoDinero movimientoDinero) {
         return Optional.ofNullable(this.movementService.saveOrUpdateMovimiento(movimientoDinero));
     }
 
+    /*-------------------------- PATCH con parámetros --------------------------------------------*/
     @PatchMapping("/enterprises/{id}/movement")
     public MovimientoDinero actualizarMovimientoDinero(@PathVariable("id") Integer id, @RequestBody MovimientoDinero movimientoDinero){
         Optional<MovimientoDinero> movimientoDinero1 = Optional.ofNullable(movementService.getMovimientoById(id));
@@ -34,6 +37,8 @@ public class MovementController {
         movement.setUsuario(movimientoDinero.getUsuario());
         return movementService.saveOrUpdateMovimiento(movement);
     }
+
+    /*---------------------------------  DELETE  --------------------------------------------*/
     @DeleteMapping("/enterprises/{id}/movement")
     public String DeleteMovimiento (@PathVariable("id") Integer id){
         boolean rta = this.movementService.deleteMovimiento(id);

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+//Empleado hereda funciones de JPA Repository
 @Repository
 public interface UsersRepository extends JpaRepository <Empleado,Integer> {
     @Query(value = "SELECT * FROM empleado where empresa_id= ?1", nativeQuery = true)
